@@ -33,4 +33,17 @@ class LoginController extends Controller
         alert()->success('Təbriklər!','Uğurla daxil oldunuz!');
         return redirect()->route('admin.index');
     }
+
+    public function logout()
+    {
+        if (!Auth::check())
+        {
+            return back();
+        }
+
+        Auth::logout();
+
+        alert()->success('Təbriklər!','Hesabdan uğurla çıxış edildi!');
+        return redirect()->route('login');
+    }
 }

@@ -39,3 +39,5 @@ Route::prefix('register')->middleware('guest')->group(function () {
     Route::get('/', [RegisterController::class, 'registerShow'])->name('register');
     Route::post('/', [RegisterController::class, 'register']);
 });
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
