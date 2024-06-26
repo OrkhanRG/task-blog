@@ -1,12 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Route;
 //admin
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Admin\TagController;
 //auth
 use App\Http\Controllers\Auth\LoginController;
+
 
 /*
  *
@@ -36,6 +38,15 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     });
 
     //tags
+    Route::prefix('/tag')->name('tag.')->group(function () {
+        Route::get('/', [TagController::class, 'index'])->name('index');
+        Route::get('/create', [TagController::class, 'create'])->name('create');
+        Route::post('/create', [TagController::class, 'store']);
+        Route::get('/edit/{tag}', [TagController::class, 'edit'])->name('update');
+        Route::patch('/edit/{tag}', [TagController::class, 'update']);
+        Route::delete('/delete/', [TagController::class, 'delete'])->name('delete');
+        Route::delete('/change-status/', [TagController::class, 'changeStatus'])->name('change-status');
+    });
 });
 
 Route::prefix('login')->middleware('guest')->group(function () {
