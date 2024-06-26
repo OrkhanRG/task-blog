@@ -48,12 +48,11 @@
                                         </div>
                                         <div class="form-check mb-3">
                                             <input type="checkbox" class="form-check-input" name="remember" id="remember">
-                                            <label class="form-check-label" for="authCheck">
+                                            <label class="form-check-label" for="remember">
                                                 Məni xatırla
                                             </label>
                                         </div>
                                         <button type="button" class="btn btn-primary me-2 mb-2 mb-md-0 text-white" id="btnLogin">Daxil Ol</button>
-                                        <a href="{{ route('register') }}" class="d-block mt-3 text-muted">Qeydiyyatdan keç</a>
                                     </form>
                                 </div>
                             </div>

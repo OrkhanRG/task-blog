@@ -18,6 +18,11 @@
     <link rel="stylesheet" href="{{ asset('assets/fonts/feather-font/css/iconfont.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/demo1/style.css') }}">
+    <style>
+        .badge:hover {
+            cursor: pointer;
+        }
+    </style>
     @stack('css')
 
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
@@ -37,7 +42,7 @@
 
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
-            <p class="text-muted mb-1 mb-md-0">Copyright © {{ date('Y') }} <a href="https://github.com/OrkhanRG" >OrkhaN</a>.</p>
+            <p class="text-muted mb-1 mb-md-0">Copyright © {{ date('Y') }} <a href="https://github.com/OrkhanRG" target="_blank" >OrkhaN</a>.</p>
             <p class="text-muted"><i class="mb-1 text-primary ms-1 icon-sm" data-feather="heart"></i></p>
         </footer>
         <!-- partial -->
