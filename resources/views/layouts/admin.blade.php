@@ -7,7 +7,7 @@
     <meta name="description" content="Responsive HTML Admin Dashboard Template based on Bootstrap 5">
     <meta name="author" content="NobleUI">
     <meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/fonts/feather-font/css/iconfont.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/demo1/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/sweetalert2/sweetalert2.min.css') }}">
     <style>
         .badge:hover {
             cursor: pointer;
@@ -53,6 +54,16 @@
 <script src="{{ asset('assets/vendors/core/core.js') }}"></script>
 <script src="{{ asset('assets/vendors/feather-icons/feather.min.js') }}"></script>
 <script src="{{ asset('assets/js/template.js') }}"></script>
+<script src="{{ asset('assets/vendors/sweetalert2/sweetalert2.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+        });
+    })
+</script>
 @include('sweetalert::alert')
 @stack('js')
 </body>

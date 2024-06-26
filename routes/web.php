@@ -31,7 +31,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
         Route::post('/create', [CategoryController::class, 'store']);
         Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('update');
         Route::patch('/edit/{category}', [CategoryController::class, 'update']);
-        Route::delete('/delete/{category}', [CategoryController::class, 'delete'])->name('delete');
+        Route::delete('/delete/', [CategoryController::class, 'delete'])->name('delete');
         Route::delete('/change-status/', [CategoryController::class, 'changeStatus'])->name('change-status');
     });
 

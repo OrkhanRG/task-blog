@@ -62,13 +62,43 @@ class CategoryController extends Controller
         return redirect()->back();
     }
 
-    public function delete()
+    public function delete(Request $request)
     {
+        $id = $request->id;
+        $category = Category::query()->find($id);
 
+        if (!$category)
+        {
+            return response([
+                'message' => 'Kateqoriya tapılmadı!'
+            ], 404);
+        }
+
+        $delete = $category->delete();
+
+        return response([
+            'message' => 'Kateqoriya silindi!',
+            'status' => $delete
+        ], 200);
     }
 
-    public function changeStatus()
+    public function changeStatus(Request $request)
     {
+        $id = $request->id;
+        $category = Category::query()->find($id);
 
+        if (!$category)
+        {
+            return response([
+                'message' => 'Kateqoriya tapılmadı!'
+            ], 404);
+        }
+
+        $category->update(['status' => !$category->status]);
+
+        return response([
+            'message' => 'Status dəyişdirildi!',
+            'status' => $category->status
+        ], 200);
     }
 }
