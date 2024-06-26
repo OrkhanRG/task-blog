@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -43,9 +44,22 @@ class CategoryController extends Controller
         return view('admin.category.create_edit', compact('category'));
     }
 
-    public function update(Request $request)
+    public function update(Category $category, CategoryUpdateRequest $request)
     {
+        $data = $request->only('name', 'slug', 'description');
+        $data['slug'] = Str::slug($data['slug']);
 
+        if (!$request->slug)
+        {
+            $data['slug'] = Str::slug($data['name']);
+        }
+
+        $data['status'] = $request->has('status');
+
+        $category->update($data);
+
+        alert()->success('Təbriklər!','Kateqoriya güncəlləndi!');
+        return redirect()->back();
     }
 
     public function delete()

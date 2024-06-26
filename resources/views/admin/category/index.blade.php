@@ -35,8 +35,8 @@
                                 @endif
                             </td>
                             <td>
-                                <a href=""><i class="text-warning" data-feather="edit"></i></a>
-                                <a href=""><i class="text-danger" data-feather="trash"></i></a>
+                                <a href="{{ route('admin.category.update', $category->id) }}"><i class="text-warning" data-feather="edit" data-toggle="tooltip" data-placement="top" title="Güncəllə"></i></a>
+                                <a href="javascript:void(0)"><i class="text-danger" data-feather="trash" data-toggle="tooltip" data-placement="top" title="Sil"></i></a>
                             </td>
                         </tr>
                     @endforeach
