@@ -67,7 +67,7 @@
                     $.post({
                         url: "{{ route('admin.category.change-status') }}",
                         data: {
-                            _method: "DELETE",
+                            _method: "PATCH",
                             id: id
                         },
                         success: function (res) {

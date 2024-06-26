@@ -19,6 +19,23 @@
                 </a>
             </li>
             <li class="nav-item nav-category">Xəbərlər</li>
+            <li class="nav-item {{ Route::is('admin.news.create', 'admin.news.index') ? 'active' : '' }}">
+                <a class="nav-link" data-bs-toggle="collapse" href="#news" role="button" aria-expanded="false" aria-controls="emails">
+                    <i class="link-icon" data-feather="list"></i>
+                    <span class="link-title">Xəbərlər</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse {{ Route::is('admin.news.create', 'admin.news.index') ? 'show' : '' }}" id="news">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.news.index') }}" class="nav-link {{ Route::is('admin.news.index') ? 'active' : '' }}">List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.news.create') }}" class="nav-link {{ Route::is('admin.news.create') ? 'active' : '' }}">Yeni xəbər yarat</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
             <li class="nav-item {{ Route::is('admin.category.create', 'admin.category.index') ? 'active' : '' }}">
                 <a class="nav-link" data-bs-toggle="collapse" href="#categories" role="button" aria-expanded="false" aria-controls="emails">
                     <i class="link-icon" data-feather="list"></i>
@@ -48,7 +65,7 @@
                             <a href="{{ route('admin.tag.index') }}" class="nav-link {{ Route::is('admin.tag.index') ? 'active' : '' }}">List</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.tag.create') }}" class="nav-link {{ Route::is('admin.tag.create') ? 'active' : '' }}">Yeni kateqoriya yarat</a>
+                            <a href="{{ route('admin.tag.create') }}" class="nav-link {{ Route::is('admin.tag.create') ? 'active' : '' }}">Yeni tag yarat</a>
                         </li>
                     </ul>
                 </div>

@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 //admin
 use App\Http\Controllers\Admin\CategoryController;
@@ -25,6 +24,15 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
 
     //blog
+    Route::prefix('/news')->name('news.')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('index');
+        Route::get('/create', [CategoryController::class, 'create'])->name('create');
+        Route::post('/create', [CategoryController::class, 'store']);
+        Route::get('/edit/{news}', [CategoryController::class, 'edit'])->name('update');
+        Route::patch('/edit/{news}', [CategoryController::class, 'update']);
+        Route::delete('/delete/', [CategoryController::class, 'delete'])->name('delete');
+        Route::patch('/change-status/', [CategoryController::class, 'changeStatus'])->name('change-status');
+    });
 
     //category
     Route::prefix('/category')->name('category.')->group(function () {
@@ -34,7 +42,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
         Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('update');
         Route::patch('/edit/{category}', [CategoryController::class, 'update']);
         Route::delete('/delete/', [CategoryController::class, 'delete'])->name('delete');
-        Route::delete('/change-status/', [CategoryController::class, 'changeStatus'])->name('change-status');
+        Route::patch('/change-status/', [CategoryController::class, 'changeStatus'])->name('change-status');
     });
 
     //tags
@@ -45,7 +53,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
         Route::get('/edit/{tag}', [TagController::class, 'edit'])->name('update');
         Route::patch('/edit/{tag}', [TagController::class, 'update']);
         Route::delete('/delete/', [TagController::class, 'delete'])->name('delete');
-        Route::delete('/change-status/', [TagController::class, 'changeStatus'])->name('change-status');
+        Route::patch('/change-status/', [TagController::class, 'changeStatus'])->name('change-status');
     });
 });
 
