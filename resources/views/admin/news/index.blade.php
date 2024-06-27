@@ -27,16 +27,26 @@
                     </thead>
                     <tbody>
                     @foreach($newsAll as $key => $news)
+                        @php
+                            $strTags = '';
+                            $selectedTags = json_decode($news->tags);
+                            foreach ($selectedTags as $tag) {
+                                if (in_array($tag, $tags)) {
+                                    $strTags .= '#'.array_search($tag, $tags).' ';
+                                }
+                            }
+                        @endphp
+
                         <tr data-id="{{$news->id}}">
                             <td>{{ ++$key }}</td>
                             <td>{{ $news->title }}</td>
                             <td>{{ $news->slug }}</td>
-                            <td>category_name</td>
-                            <td>{{ $news->tags }}</td>
+                            <td>{{ $news->getCategory->name }}</td>
+                            <td>{{ $strTags }}</td>
                             <td>{{ $news->publish_date }}</td>
                             <td><i class="text-info" data-feather="message-square" data-toggle="tooltip" data-placement="top" title="{{ $news->description }}"></i></td>
                             <td><i class="text-info" data-feather="message-square" data-toggle="tooltip" data-placement="top" title="{{ $news->short_description }}"></i></td>
-                            <td><i class="text-info" data-feather="user" data-toggle="tooltip" data-placement="top" title="user_name"></i></td>
+                            <td><i class="text-black" data-feather="user" data-toggle="tooltip" data-placement="top" title="{{ $news->getUser->name }}"></i></td>
                             <td>
                                 @if($news->status)
                                     <div class="badge bg-success btnChangeStatus">Aktiv</div>

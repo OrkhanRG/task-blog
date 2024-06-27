@@ -16,8 +16,9 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $newsAll = News::query()->paginate(10);
-        return view('admin.news.index', compact('newsAll'));
+        $tags = Tag::query()->where('status', 1)->pluck('id', 'name')->toArray();
+        $newsAll = News::query()->with(['getUser', 'getCategory'])->paginate(10);
+        return view('admin.news.index', compact('newsAll', 'tags'));
     }
 
     public function create()
