@@ -21,7 +21,7 @@
             <li class="nav-item nav-category">Xəbərlər</li>
             <li class="nav-item {{ Route::is('admin.news.create', 'admin.news.index') ? 'active' : '' }}">
                 <a class="nav-link" data-bs-toggle="collapse" href="#news" role="button" aria-expanded="false" aria-controls="emails">
-                    <i class="link-icon" data-feather="list"></i>
+                    <i class="link-icon" data-feather="airplay"></i>
                     <span class="link-title">Xəbərlər</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
@@ -55,7 +55,7 @@
             </li>
             <li class="nav-item {{ Route::is('admin.tag.create', 'admin.tag.index') ? 'active' : '' }}">
                 <a class="nav-link" data-bs-toggle="collapse" href="#tags" role="button" aria-expanded="false" aria-controls="emails">
-                    <i class="link-icon" data-feather="mail"></i>
+                    <i class="link-icon" data-feather="tag"></i>
                     <span class="link-title">Taglar</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>

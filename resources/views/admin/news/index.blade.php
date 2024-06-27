@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Kateqoriyalar')
+@section('title', 'Xəbərlər')
 
 @push('css')
 @endpush
@@ -7,35 +7,45 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <h6 class="card-title">Kateqoriyalar</h6>
+            <h6 class="card-title">Xəbərlər</h6>
             <div class="table-responsive pt-3">
                 <table class="table table-bordered">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Ad</th>
-                        <th>Slug</th>
-                        <th>Description</th>
+                        <th>Şəkil</th>
+                        <th>Başlıq</th>
+                        <th>Kateqoriya</th>
+                        <th>Taglar</th>
+                        <th>Yayınlanma Tarixi</th>
+                        <th>Açığlama</th>
+                        <th>Qısa Açığlama</th>
+                        <th>Yaradıcı</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($categories as $key => $category)
-                        <tr data-id="{{$category->id}}">
+                    @foreach($newsAll as $key => $news)
+                        <tr data-id="{{$news->id}}">
                             <td>{{ ++$key }}</td>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->slug }}</td>
-                            <td><i class="text-info" data-feather="message-square" data-toggle="tooltip" data-placement="top" title="{{ $category->description }}"></i></td>
+                            <td>{{ $news->title }}</td>
+                            <td>{{ $news->slug }}</td>
+                            <td>category_name</td>
+                            <td>{{ $news->tags }}</td>
+                            <td>{{ $news->publish_date }}</td>
+                            <td><i class="text-info" data-feather="message-square" data-toggle="tooltip" data-placement="top" title="{{ $news->description }}"></i></td>
+                            <td><i class="text-info" data-feather="message-square" data-toggle="tooltip" data-placement="top" title="{{ $news->short_description }}"></i></td>
+                            <td><i class="text-info" data-feather="user" data-toggle="tooltip" data-placement="top" title="user_name"></i></td>
                             <td>
-                                @if($category->status)
+                                @if($news->status)
                                     <div class="badge bg-success btnChangeStatus">Aktiv</div>
                                 @else
                                     <div class="badge bg-danger btnChangeStatus">Passiv</div>
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('admin.category.update', $category->id) }}"><i class="text-warning" data-feather="edit" data-toggle="tooltip" data-placement="top" title="Güncəllə"></i></a>
+                                <a href="{{ route('admin.news.update', $news->id) }}"><i class="text-warning" data-feather="edit" data-toggle="tooltip" data-placement="top" title="Güncəllə"></i></a>
                                 <a href="javascript:void(0)" class="btnDelete"><i class="text-danger" data-feather="trash" data-toggle="tooltip" data-placement="top" title="Sil"></i></a>
                             </td>
                         </tr>
@@ -65,9 +75,9 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.post({
-                        url: "{{ route('admin.category.change-status') }}",
+                        url: "{{ route('admin.news.change-status') }}",
                         data: {
-                            _method: "DELETE",
+                            _method: "PATCH",
                             id: id
                         },
                         success: function (res) {
@@ -94,7 +104,7 @@
             let tr = $(this).closest('tr');
             let id = tr.data('id');
             Swal.fire({
-                title: "Kateqoriyanı silmək istədiyinizə əminsiniz?",
+                title: "Xəbəri silmək istədiyinizə əminsiniz?",
                 showDenyButton: false,
                 showCancelButton: true,
                 confirmButtonText: "Bəli",
@@ -102,7 +112,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.post({
-                        url: "{{ route('admin.category.delete') }}",
+                        url: "{{ route('admin.news.delete') }}",
                         data: {
                             _method: "DELETE",
                             id: id
@@ -111,7 +121,7 @@
                             if (res.status) {
                                 tr.remove();
                             } else {
-                                Swal.fire("Xəta!", "Kateqoriya silinmədi!", "success");
+                                Swal.fire("Xəta!", "Xəbər silinmədi!", "success");
                             }
                             element.html(res.status ? 'Aktiv' : 'Passiv');
                             Swal.fire("Təbriklər!", res.message, "success");

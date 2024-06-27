@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\NewsController;
 //auth
 use App\Http\Controllers\Auth\LoginController;
 
@@ -25,13 +26,13 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 
     //blog
     Route::prefix('/news')->name('news.')->group(function () {
-        Route::get('/', [CategoryController::class, 'index'])->name('index');
-        Route::get('/create', [CategoryController::class, 'create'])->name('create');
-        Route::post('/create', [CategoryController::class, 'store']);
-        Route::get('/edit/{news}', [CategoryController::class, 'edit'])->name('update');
-        Route::patch('/edit/{news}', [CategoryController::class, 'update']);
-        Route::delete('/delete/', [CategoryController::class, 'delete'])->name('delete');
-        Route::patch('/change-status/', [CategoryController::class, 'changeStatus'])->name('change-status');
+        Route::get('/', [NewsController::class, 'index'])->name('index');
+        Route::get('/create', [NewsController::class, 'create'])->name('create');
+        Route::post('/create', [NewsController::class, 'store']);
+        Route::get('/edit/{news}', [NewsController::class, 'edit'])->name('update');
+        Route::patch('/edit/{news}', [NewsController::class, 'update']);
+        Route::delete('/delete/', [NewsController::class, 'delete'])->name('delete');
+        Route::patch('/change-status/', [NewsController::class, 'changeStatus'])->name('change-status');
     });
 
     //category

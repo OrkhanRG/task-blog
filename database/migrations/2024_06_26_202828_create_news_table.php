@@ -16,12 +16,13 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
             $table->string('title');
+            $table->string('slug')->unique();
             $table->json('tags')->nullable();
             $table->tinyText('short_description')->nullable();
             $table->text('description')->nullable();
             $table->boolean('status')->default(0);
             $table->string('image')->nullable();
-            $table->dateTime('publish_date')->nullable();
+            $table->dateTime('publish_date')->default(now());
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->onDelete('cascade');

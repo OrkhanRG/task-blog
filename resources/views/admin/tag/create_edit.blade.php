@@ -16,8 +16,8 @@
                     @method('PATCH')
                 @endisset
                 <div class="mb-3">
-                    <label for="name" class="form-label">Kateqoriya Adı</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" autocomplete="off" placeholder="Kateqoriya Adı" value="{{ isset($tag) ? $tag->name : old('name') }}">
+                    <label for="name" class="form-label">Tag Adı</label>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" autocomplete="off" placeholder="Tag Adı" value="{{ isset($tag) ? $tag->name : old('name') }}">
                     @error('name')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
